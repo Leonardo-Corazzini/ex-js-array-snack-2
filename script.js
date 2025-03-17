@@ -94,16 +94,24 @@ const books = [
 // Usando la l'API https://boolean-spec-frontend.vercel.app/freetestapi/books/{id} usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
 // Testala con l’array [2, 13, 7, 21, 19] .
 
-const ids = [2, 13, 7, 21, 19]
+// const ids = [2, 13, 7, 21, 19]
 
-async function getBooks(ids = []) {
+// async function getBooks(ids = []) {
 
-    const promesse = ids.map((id) => fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/books/${id}`).then(res => res.json()))
+//     const promesse = ids.map((id) => fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/books/${id}`).then(res => res.json()))
 
-    const books = await Promise.all(promesse)
+//     const books = await Promise.all(promesse)
 
-    return books
+//     return books
 
-}
+// }
 
-getBooks(ids).then((books) => console.log(books))
+// getBooks(ids).then((books) => console.log(books))
+
+// Crea una variabile booleana () per verificare se c’è almeno un libro disponibile.
+// Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+// Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+const areThereAvailableBooks = books.some(b => b.available)
+const booksByPrice = books.sort((a, b) => parseFloat(a.price.replace('€', '') - parseFloat(b.price.replace('€', ''))))
+const booksByPricein = books.sort((a, b) => a.available === b.available ? 0 : a.available ? -1 : 1)
+console.log(booksByPricein)
